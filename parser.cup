@@ -31,7 +31,10 @@ init with {:
 scan with {: return lexer.next_token(); :};
 
 /* Terminals (tokens returned by the scanner). */
-terminal            SEMI, PLUS, MINUS, UMINUS, TIMES, LPAREN, RPAREN;
+terminal            SEMI, PLUS, MINUS, UMINUS, TIMES, LPAREN, RPAREN, h1Open, endTag, h1Close ,bodyOpen,bodyClose,framesetOpen,framesetClose,noframesOpen,noframesClose;
+terminal            formOpen,formClose,selectOpen,selectClose,optionOpen,optionClose,tableOpen,tableClose,trOpen,trClose,tdOpen,tdClose,thOpen,thClose,aOpen,aClose;
+terminal 			ulOpen,ulClose,liOpen,liClose,olOpen,olClose,pOpen,pClose,iOpen,iClose,uOpen,uClose,smallOpen,smallClose,supOpen,supClose,subOpen,subClose,centerOpen,centerClose;
+terminal 			fontOpen,fontClose,h2Open,h2Close,h3Open,h3Close,h4Open,h4Close,h5Open,h5Close,h6Open,h6Close,bClose,bOpen;
 terminal Integer    NUMBER;        // our scanner provides numbers as integers
 
 /* Non terminals */
@@ -44,16 +47,38 @@ precedence left TIMES;
 precedence left UMINUS;
 
 /* The grammar rules */
-expr_list ::= expr_list expr:e SEMI         {: System.out.println(e); :}
-            | expr:e SEMI                   {: System.out.println(e); :}
-            ;
-            
-expr      ::= expr:e1 PLUS  expr:e2         {: RESULT = e1+e2;        :}
-             | expr:e1 MINUS expr:e2        {: RESULT = e1-e2;        :}
-             | expr:e1 TIMES expr:e2        {: RESULT = e1*e2;        :}
-             | MINUS expr:e                 {: RESULT = -e;           :}
-             %prec UMINUS
-             | LPAREN expr:e RPAREN	         {: RESULT = e;           :}
-             | NUMBER:n	                     {: RESULT = n;           :}
-             ;
+
+             
+             
+expr      ::= bodyOpen endTag expr:text bodyClose   {: System.out.println(text); :}
+| framesetOpen endTag expr:frameset_content framesetClose {: System.out.printl(frameset_content); :}
+| noframesOpen endTag expr:body_content noframesClose {: System.out.printl(body_content); :}
+| formOpen endTag expr:form_content formClose {: System.out.printl(form_content); :}
+| selectOpen endTag expr:select_content selectClose {: System.out.printl(select_content); :}
+| optionOpen endTag expr:plain_text optionClose {: System.out.printl(plain_text); :}
+| tableOpen endTag expr:table_content tableClose {: System.out.printl(table_content); :}
+| trOpen endTag expr:table_cell trClose {: System.out.printl(table_cell); :}
+| tdOpen endTag expr:body_content tdClose {: System.out.printl(body_content); :}
+| thOpen endTag expr:body_content thClose {: System.out.printl(body_content); :}
+| aOpen endTag expr:a_content aClose {: System.out.printl(a_content); :}
+| ulOpen endTag expr:li_tag ulClose {: System.out.printl(li_tag); :}
+| liOpen endTag expr:li_tag liClose {: System.out.printl(li_tag); :}
+| olOpen endTag expr:li_tag olClose {: System.out.printl(li_tag); :}
+| pOpen endTag expr:text pClose {: System.out.printl(text); :}
+| iOpen endTag expr:text iClose {: System.out.printl(text); :}
+| uOpen endTag expr:text uClose {: System.out.printl(text); :}
+| smallOpen endTag expr:text smallClose {: System.out.printl(text); :}
+| supOpen endTag expr:text supClose {: System.out.printl(text); :}
+| subOpen endTag expr:text subClose {: System.out.printl(text); :}
+| centerOpen endTag expr:body_content centerClose {: System.out.printl(text); :}
+| subOpen endTag expr:text subClose {: System.out.printl(text); :}
+| fontOpen endTag expr:style_text fontClose {: System.out.printl(style_text); :}
+| h1Open endTag expr:text h1Close {: System.out.printl(text); :}
+| h2Open endTag expr:text h2Close {: System.out.printl(text); :}
+| h3Open endTag expr:text h3Close {: System.out.printl(text); :}
+| h4Open endTag expr:text h4Close {: System.out.printl(text); :}
+| h5Open endTag expr:text h5Close {: System.out.printl(text); :}
+| h6Open endTag expr:text h6Close {: System.out.printl(text); :}
+| bOpen endTag expr:text bClose {: System.out.printl(text); :};
+
        

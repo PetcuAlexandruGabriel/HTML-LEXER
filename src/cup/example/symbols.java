@@ -127,8 +127,7 @@ public interface symbols {
      public static final int leftmargin   =114       ;
      public static final int clear        =115      ;
   
-  
-  
+     
   
 }
 
