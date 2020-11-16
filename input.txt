@@ -1,1 +1,1 @@
-htmlOpen htmlClose
+<html><body></body></html>

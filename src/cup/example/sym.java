@@ -29,21 +29,26 @@ public interface sym {
   public static final int aOpen = 35;
   public static final int optionClose = 26;
   public static final int bodyOpen = 8;
+  public static final int tbody = 86;
   public static final int h2Open = 61;
   public static final int headOpen = 73;
   public static final int captionOpen = 75;
   public static final int tdClose = 32;
+  public static final int thead = 81;
   public static final int fieldsetClose = 79;
   public static final int noframesClose = 13;
   public static final int h6Close = 70;
   public static final int captionClose = 76;
+  public static final int img = 84;
   public static final int fieldsetOpen = 78;
   public static final int selectClose = 24;
   public static final int pOpen = 45;
   public static final int ulOpen = 39;
   public static final int tableOpen = 27;
+  public static final int br = 83;
   public static final int centerClose = 58;
   public static final int smallOpen = 51;
+  public static final int hr = 82;
   public static final int ulClose = 40;
   public static final int uOpen = 49;
   public static final int tableClose = 28;
@@ -64,6 +69,7 @@ public interface sym {
   public static final int h1Close = 7;
   public static final int dirOpen = 37;
   public static final int selectOpen = 23;
+  public static final int endTag = 80;
   public static final int headClose = 74;
   public static final int supClose = 54;
   public static final int htmlClose = 5;
@@ -84,6 +90,7 @@ public interface sym {
   public static final int dirOpendirClose = 16;
   public static final int colgroupClose = 20;
   public static final int h3Close = 64;
+  public static final int input = 85;
   public static final int framesetClose = 11;
   public static final int pClose = 46;
   public static final int h4Open = 65;
@@ -168,7 +175,14 @@ public interface sym {
   "captionClose",
   "frameOpen",
   "fieldsetOpen",
-  "fieldsetClose"
+  "fieldsetClose",
+  "endTag",
+  "thead",
+  "hr",
+  "br",
+  "img",
+  "input",
+  "tbody"
   };
 }
 
